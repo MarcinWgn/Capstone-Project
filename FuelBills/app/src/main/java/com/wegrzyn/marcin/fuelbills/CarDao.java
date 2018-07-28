@@ -24,6 +24,9 @@ public interface CarDao {
     @Query("SELECT * FROM car_table")
     LiveData<List<Car>> getAllCar();
 
+    @Query("SELECT * FROM refueling_table")
+    LiveData<List<Refueling>> getAllRefueling();
+
     @Query("SELECT * FROM refueling_table WHERE refueling_table.car_id= :id")
     LiveData<List<Refueling>> getCarRefueling(int id);
 
@@ -33,5 +36,6 @@ public interface CarDao {
     @Query("DELETE FROM refueling_table WHERE refueling_table.refueling_id= :id")
     void deleteRefueling(int id);
 
-
+    @Delete
+    public void deleteCars(Car... cars);
 }

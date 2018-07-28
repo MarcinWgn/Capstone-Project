@@ -2,6 +2,7 @@ package com.wegrzyn.marcin.fuelbills;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -26,6 +27,11 @@ public class Car {
     @ColumnInfo(name = "tank_size")
     private int tankSize;
 
+    // TODO: 25.07.2018 do usuniecia
+
+    Car(String name){
+        this.name = name;
+    }
     public int getCarId() {
         return carId;
     }

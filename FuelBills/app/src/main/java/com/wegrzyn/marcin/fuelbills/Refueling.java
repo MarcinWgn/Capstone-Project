@@ -11,11 +11,11 @@ import java.util.Date;
  * Created by Marcin Węgrzyn on 23.07.2018.
  * wireamg@gmail.com
  */
-@Entity(tableName = "refueling_table")
-@ForeignKey(entity = Car.class,
-        parentColumns = "car_id",
-        childColumns = "car_id",
-        onDelete = ForeignKey.CASCADE)
+@Entity(tableName = "refueling_table", foreignKeys = {
+        @ForeignKey(entity = Car.class,
+                parentColumns = "car_id",
+                childColumns = "car_id",
+                onDelete = ForeignKey.CASCADE)})
 public class Refueling {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "refueling_id")
@@ -34,6 +34,12 @@ public class Refueling {
     private double totalPrice;
     @ColumnInfo(name = "note")
     private String note;
+
+    // TODO: 27.07.2018 usuń
+    Refueling(String note){
+        this.note = note;
+        this.carId = 10;
+    }
 
     public int getRefuelingId() {
         return refuelingId;

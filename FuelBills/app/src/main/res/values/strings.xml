@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Fuel Bills</string>
+    <string name="car_name">Name</string>
+    <string name="vin">VIN</string>
+    <string name="fuel">Fuel</string>
+    <string name="plate">Plate</string>
+    <string name="tank">Tank</string>
 </resources>
