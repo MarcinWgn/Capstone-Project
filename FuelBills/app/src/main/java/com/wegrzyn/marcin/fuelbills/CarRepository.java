@@ -16,7 +16,6 @@ public class CarRepository {
     private LiveData<List<Car>> allCars;
     private LiveData<List<Refueling>> allRefuelings;
 
-
     CarRepository(Application application){
 
         CarRoomDatabase database = CarRoomDatabase.getDatabase(application);
@@ -31,6 +30,7 @@ public class CarRepository {
     LiveData<List<Refueling>> getAllRefuelings(){
         return allRefuelings;
     }
+    LiveData<Car> getCar(int id){ return carDao.getCar(id);}
 
     public void insertCar(Car car){
         new insertCarTask(carDao).execute(car);
@@ -39,6 +39,9 @@ public class CarRepository {
     public void deleteCar(Car car){
         new deleteCarTask(carDao).execute(car);
     }
+
+    public void updateCar(Car car) {new updateCarTask(carDao).execute(car);}
+
 
     private static class insertCarTask extends AsyncTask <Car, Void, Void>{
 
@@ -50,7 +53,6 @@ public class CarRepository {
         protected Void doInBackground(Car... cars) {
 
             asyncTaskDao.insertCar(cars[0]);
-            asyncTaskDao.insertRefueling(new Refueling("opis tankowania"));
             return null;
         }
     }
@@ -63,12 +65,21 @@ public class CarRepository {
 
         @Override
         protected Void doInBackground(Car... cars) {
-
             asyncTaskDao.deleteCars(cars);
-//            asyncTaskDao.insertCar(cars[0]);
             return null;
         }
     }
 
+    private static class updateCarTask extends AsyncTask <Car, Void, Void>{
 
+        private CarDao asyncTaskDao;
+
+        updateCarTask(CarDao carDao){asyncTaskDao = carDao; }
+
+        @Override
+        protected Void doInBackground(Car... cars) {
+            asyncTaskDao.updateCar(cars);
+            return null;
+        }
+    }
 }

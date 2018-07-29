@@ -27,11 +27,14 @@ public class Car {
     @ColumnInfo(name = "tank_size")
     private int tankSize;
 
-    // TODO: 25.07.2018 do usuniecia
-
-    Car(String name){
+    public Car(String name, String vin, int fuelType, String plate, int tankSize) {
         this.name = name;
+        this.vin = vin;
+        this.fuelType = fuelType;
+        this.plate = plate;
+        this.tankSize = tankSize;
     }
+
     public int getCarId() {
         return carId;
     }

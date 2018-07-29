@@ -2,12 +2,17 @@ package com.wegrzyn.marcin.fuelbills;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements CarsAdapter.ListItemClickListener {
 
+    public static final String EDIT = "edit";
     private CarsViewModel carsViewModel;
     private CarsAdapter carsAdapter;
 
@@ -46,22 +52,12 @@ public class MainActivity extends AppCompatActivity implements CarsAdapter.ListI
             public void onChanged(@Nullable List<Car> cars) {
                 mCars = cars;
                 carsAdapter.setCars(mCars);
-
-                Toast.makeText(getApplication(),"zmiana bazy",Toast.LENGTH_SHORT).show();
             }
         });
         carsViewModel.getAllRefillings().observe(this, new Observer<List<Refueling>>() {
             @Override
             public void onChanged(@Nullable List<Refueling> refuelings) {
 
-            }
-        });
-
-        FloatingActionButton insertCarFab = findViewById(R.id.insert_car_fab);
-        insertCarFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplication(),"Add Activity",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -77,7 +73,29 @@ public class MainActivity extends AppCompatActivity implements CarsAdapter.ListI
     }
 
     @Override
-    public void onInsertRefueling() {
-        Toast.makeText(getApplication(), "Insert Refueling",Toast.LENGTH_SHORT).show();
+    public void editCarData(int id) {
+
+        Intent intent = new Intent(MainActivity.this, AddCarActivity.class);
+        intent.putExtra(EDIT,id);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activiry_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_car_item_menu:
+                Intent intent = new Intent(MainActivity.this, AddCarActivity.class);
+                intent.putExtra(EDIT,-1);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

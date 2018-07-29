@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
     interface ListItemClickListener{
         void onItemClick(int itemIndex);
         void onItemDelete(int itemDelete);
-        void onInsertRefueling();
+        void editCarData(int id);
     }
     void setCars(List<Car>carList){
         this.carList = carList;
@@ -56,13 +55,11 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
             String vin = car.getVin();
             if(vin!=null) holder.vinTextView.setText(vin);
             int fuel = car.getFuelType();
-            if(fuel!= 0)holder.fuelTextView.setText(String.valueOf(fuel));
+            setFuelType(holder.fuelTextView,fuel);
             String plate = car.getPlate();
             if(plate!=null) holder.plateTextView.setText(plate);
             String tank = String.valueOf(car.getTankSize());
             if(!tank.isEmpty()) holder.tankTextView.setText(tank);
-        }else {
-            holder.nameTextView.setText("no car");
         }
     }
 
@@ -96,7 +93,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
             insert.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemClickListener.onInsertRefueling();
+                    itemClickListener.editCarData(carList.get(getAdapterPosition()).getCarId());
                 }
             });
             deleteCar.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +109,21 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
                     itemClickListener.onItemClick(getAdapterPosition());
                 }
             });
+        }
+    }
+
+    private void setFuelType(TextView view, int intType){
+        switch(intType){
+            case 0:
+                view.setText(R.string.gasoline);
+                break;
+            case 1:
+                view.setText(R.string.diesel);
+                break;
+            case 2:
+                view.setText(R.string.lpg);
+                break;
+
         }
     }
 }

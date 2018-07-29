@@ -16,7 +16,6 @@
             android:id="@+id/name_label_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/car_name"
@@ -27,7 +26,6 @@
             android:id="@+id/name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/name_label_tv"
             app:layout_constraintStart_toEndOf="@+id/name_label_tv"
@@ -107,16 +105,16 @@
             android:id="@+id/tank_size_unit_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="L"
             app:layout_constraintBaseline_toBaselineOf="@+id/tank_size_tv"
-            app:layout_constraintStart_toEndOf="@+id/tank_size_tv"
-            tools:text="L" />
+            app:layout_constraintStart_toEndOf="@+id/tank_size_tv" />
 
         <ImageButton
             android:id="@+id/del_car_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:background="@android:drawable/ic_menu_delete"
             app:layout_constraintEnd_toEndOf="parent"
@@ -128,8 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@android:drawable/ic_menu_add"
+            android:background="@android:drawable/ic_menu_edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

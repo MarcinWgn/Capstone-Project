@@ -5,4 +5,9 @@
     <string name="fuel">Fuel</string>
     <string name="plate">Plate</string>
     <string name="tank">Tank</string>
+    <string name="save">Save</string>
+    <string name="gasoline">Gasoline</string>
+    <string name="diesel">Diesel</string>
+    <string name="lpg">Lpg</string>
+    <string name="add_car">add car</string>
 </resources>

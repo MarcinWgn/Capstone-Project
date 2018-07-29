@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -36,6 +37,12 @@ public interface CarDao {
     @Query("DELETE FROM refueling_table WHERE refueling_table.refueling_id= :id")
     void deleteRefueling(int id);
 
+    @Query("SELECT * FROM car_table WHERE car_id= :id")
+    LiveData<Car>getCar(int id);
+
+    @Update
+    void updateCar(Car... car);
+
     @Delete
-    public void deleteCars(Car... cars);
+    void deleteCars(Car... cars);
 }
