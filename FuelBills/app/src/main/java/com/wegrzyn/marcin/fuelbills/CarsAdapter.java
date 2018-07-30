@@ -26,12 +26,12 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
         this.context = context;
         itemClickListener = listItemClickListener
 ;    }
-
-    interface ListItemClickListener{
-        void onItemClick(int itemIndex);
-        void onItemDelete(int itemDelete);
-        void editCarData(int id);
-    }
+//
+//    interface ListItemClickListener{
+//        void onItemClick(int itemIndex);
+//        void onItemDelete(int itemDelete);
+//        void editItemData(int id);
+//    }
     void setCars(List<Car>carList){
         this.carList = carList;
         notifyDataSetChanged();
@@ -77,7 +77,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
         TextView plateTextView;
         TextView tankTextView;
         ImageButton deleteCar;
-        ImageButton insert;
+        ImageButton editCar;
 
         CarsViewHolder(View itemView) {
             super(itemView);
@@ -88,12 +88,12 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
             plateTextView = itemView.findViewById(R.id.plate_tv);
             tankTextView = itemView.findViewById(R.id.tank_size_tv);
             deleteCar = itemView.findViewById(R.id.del_car_btn);
-            insert = itemView.findViewById(R.id.insert_item_btn);
+            editCar = itemView.findViewById(R.id.insert_item_btn);
 
-            insert.setOnClickListener(new View.OnClickListener() {
+            editCar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    itemClickListener.editCarData(carList.get(getAdapterPosition()).getCarId());
+                    itemClickListener.editItemData(carList.get(getAdapterPosition()).getCarId());
                 }
             });
             deleteCar.setOnClickListener(new View.OnClickListener() {

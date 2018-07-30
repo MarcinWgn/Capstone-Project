@@ -106,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="L"
+            android:text="@string/litres"
             app:layout_constraintBaseline_toBaselineOf="@+id/tank_size_tv"
             app:layout_constraintStart_toEndOf="@+id/tank_size_tv" />
 
@@ -118,7 +118,8 @@
             android:layout_marginTop="8dp"
             android:background="@android:drawable/ic_menu_delete"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="TODO" />
 
         <ImageButton
             android:id="@+id/insert_item_btn"
@@ -128,7 +129,8 @@
             android:layout_marginEnd="8dp"
             android:background="@android:drawable/ic_menu_edit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="TODO" />
 
     </android.support.constraint.ConstraintLayout>
 

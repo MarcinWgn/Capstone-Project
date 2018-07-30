@@ -20,25 +20,38 @@ public class Refueling {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "refueling_id")
     private int refuelingId;
+
     @ColumnInfo(name = "car_id")
     private int carId;
+
     @ColumnInfo(name = "date")
-    private long date;
+    private String date;
+
     @ColumnInfo(name = "trip_dist")
     private int tripDist;
+    @ColumnInfo(name = "distance")
+    private int dist;
+
     @ColumnInfo(name = "quantity")
     private float quantity;
+
     @ColumnInfo(name = "price")
     private double price;
+
     @ColumnInfo(name = "total_price")
     private double totalPrice;
+
     @ColumnInfo(name = "note")
     private String note;
 
-    // TODO: 27.07.2018 usuń
-    Refueling(String note){
+    public Refueling(int carId, String date, int tripDist, float quantity, double price, double totalPrice, String note) {
+        this.carId = carId;
+        this.date = date;
+        this.tripDist = tripDist;
+        this.quantity = quantity;
+        this.price = price;
+        this.totalPrice = totalPrice;
         this.note = note;
-        this.carId = 10;
     }
 
     public int getRefuelingId() {
@@ -57,11 +70,11 @@ public class Refueling {
         this.carId = carId;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -104,4 +117,6 @@ public class Refueling {
     public void setNote(String note) {
         this.note = note;
     }
+    public int getDist() { return dist; }
+    public void setDist(int dist) { this.dist = dist; }
 }

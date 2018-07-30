@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,9 +22,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements CarsAdapter.ListItemClickListener {
+public class MainActivity extends AppCompatActivity implements ListItemClickListener {
 
     public static final String EDIT = "edit";
+    public static final String CAR_ID = "car_id";
     private CarsViewModel carsViewModel;
     private CarsAdapter carsAdapter;
 
@@ -33,6 +35,11 @@ public class MainActivity extends AppCompatActivity implements CarsAdapter.ListI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Car List");
+        }
 
 
         RecyclerView recyclerView = findViewById(R.id.car_recycler_view);
@@ -60,11 +67,21 @@ public class MainActivity extends AppCompatActivity implements CarsAdapter.ListI
 
             }
         });
+
+        FloatingActionButton fab = findViewById(R.id.add_car_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addCar();
+            }
+        });
     }
 
     @Override
     public void onItemClick(int itemIndex) {
-        Toast.makeText(this,String.valueOf(itemIndex),Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this,RefuelingActivity.class);
+        intent.putExtra(CAR_ID,mCars.get(itemIndex).getCarId());
+        startActivity(intent);
     }
 
     @Override
@@ -73,8 +90,7 @@ public class MainActivity extends AppCompatActivity implements CarsAdapter.ListI
     }
 
     @Override
-    public void editCarData(int id) {
-
+    public void editItemData(int id) {
         Intent intent = new Intent(MainActivity.this, AddCarActivity.class);
         intent.putExtra(EDIT,id);
         startActivity(intent);
@@ -90,12 +106,16 @@ public class MainActivity extends AppCompatActivity implements CarsAdapter.ListI
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_car_item_menu:
-                Intent intent = new Intent(MainActivity.this, AddCarActivity.class);
-                intent.putExtra(EDIT,-1);
-                startActivity(intent);
+                addCar();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void addCar() {
+        Intent intent = new Intent(MainActivity.this, AddCarActivity.class);
+        intent.putExtra(EDIT,-1);
+        startActivity(intent);
     }
 }

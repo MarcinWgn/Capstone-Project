@@ -31,6 +31,8 @@ public class CarRepository {
         return allRefuelings;
     }
     LiveData<Car> getCar(int id){ return carDao.getCar(id);}
+    LiveData<List<Refueling>> getRefuelingById(int carId){return carDao.getCarRefueling(carId);}
+    LiveData<Refueling> getRefueling(int id){return  carDao.getRefueling(id);}
 
     public void insertCar(Car car){
         new insertCarTask(carDao).execute(car);
@@ -41,6 +43,12 @@ public class CarRepository {
     }
 
     public void updateCar(Car car) {new updateCarTask(carDao).execute(car);}
+
+    public void insertRefueling(Refueling refueling){new insertRefuelingTask(carDao).execute(refueling);}
+
+    public void deleteRefueling(Refueling refueling){new deleteRefuelingTask(carDao).execute(refueling);}
+
+    public void updateRefueling(Refueling refueling){new updateRefuelingTask(carDao).execute(refueling);}
 
 
     private static class insertCarTask extends AsyncTask <Car, Void, Void>{
@@ -53,6 +61,19 @@ public class CarRepository {
         protected Void doInBackground(Car... cars) {
 
             asyncTaskDao.insertCar(cars[0]);
+            return null;
+        }
+    }
+
+    private static class insertRefuelingTask extends AsyncTask <Refueling, Void, Void>{
+
+        private CarDao asyncTaskDao;
+
+        insertRefuelingTask(CarDao carDao){asyncTaskDao = carDao; }
+
+        @Override
+        protected Void doInBackground(Refueling... refuelings) {
+            asyncTaskDao.insertRefueling(refuelings[0]);
             return null;
         }
     }
@@ -79,6 +100,32 @@ public class CarRepository {
         @Override
         protected Void doInBackground(Car... cars) {
             asyncTaskDao.updateCar(cars);
+            return null;
+        }
+    }
+
+    private static class deleteRefuelingTask extends AsyncTask <Refueling, Void, Void>{
+
+        private CarDao asyncTaskDao;
+
+        deleteRefuelingTask(CarDao carDao){asyncTaskDao = carDao; }
+
+        @Override
+        protected Void doInBackground(Refueling... refueling) {
+            asyncTaskDao.deleteRefueling(refueling);
+            return null;
+        }
+    }
+
+    private static class updateRefuelingTask extends AsyncTask <Refueling, Void, Void>{
+
+        private CarDao asyncTaskDao;
+
+        updateRefuelingTask(CarDao carDao){asyncTaskDao = carDao; }
+
+        @Override
+        protected Void doInBackground(Refueling... refueling) {
+            asyncTaskDao.updateRefueling(refueling);
             return null;
         }
     }

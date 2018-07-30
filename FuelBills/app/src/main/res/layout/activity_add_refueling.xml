@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddRefuelingActivity">
+
+    <TextView
+        android:id="@+id/date_label_ref_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/date"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/date_ref_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:minWidth="100dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/date_label_ref_tv"
+        app:layout_constraintStart_toEndOf="@+id/trip_ref_dist_label_tv"
+        tools:text="12.02.2012" />
+
+    <TextView
+        android:id="@+id/trip_ref_dist_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/trip_distance"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_label_ref_tv" />
+
+    <EditText
+        android:id="@+id/trip_ref_dist_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:minWidth="100dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/trip_ref_dist_label_tv"
+        app:layout_constraintStart_toStartOf="@+id/date_ref_tv"
+        tools:text="82" />
+
+    <TextView
+        android:id="@+id/trip_unit_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/km"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/trip_ref_dist_et"
+        app:layout_constraintStart_toEndOf="@+id/trip_ref_dist_et" />
+
+    <TextView
+        android:id="@+id/total_dist_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        android:text="@string/distance"
+        app:layout_constraintStart_toStartOf="@+id/trip_ref_dist_label_tv"
+        app:layout_constraintTop_toBottomOf="@+id/trip_ref_dist_label_tv" />
+
+    <EditText
+        android:id="@+id/total_dist_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:minWidth="100dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/total_dist_label_tv"
+        app:layout_constraintStart_toStartOf="@+id/trip_ref_dist_et"
+        tools:text="128000" />
+
+    <TextView
+        android:id="@+id/total_unit_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/km"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/total_dist_et"
+        app:layout_constraintStart_toEndOf="@+id/total_dist_et" />
+
+    <TextView
+        android:id="@+id/quantity_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/quantity"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/total_dist_label_tv"
+        app:layout_constraintTop_toBottomOf="@+id/total_dist_label_tv" />
+
+    <EditText
+        android:id="@+id/quantity_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:minWidth="100dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/quantity_label_tv"
+        app:layout_constraintStart_toStartOf="@+id/total_dist_et"
+        tools:text="47" />
+
+    <TextView
+        android:id="@+id/quantity_unit_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/litres"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/quantity_et"
+        app:layout_constraintStart_toEndOf="@+id/quantity_et" />
+
+    <TextView
+        android:id="@+id/price_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/price"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/quantity_label_tv"
+        app:layout_constraintTop_toBottomOf="@+id/quantity_label_tv" />
+
+    <EditText
+        android:id="@+id/price_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:minWidth="100dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/price_label_tv"
+        app:layout_constraintStart_toStartOf="@+id/quantity_et"
+        tools:text="4,75" />
+
+    <TextView
+        android:id="@+id/unit_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/pln"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/price_et"
+        app:layout_constraintStart_toEndOf="@+id/price_et" />
+
+    <TextView
+        android:id="@+id/total_price_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/total_price"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/price_label_tv"
+        app:layout_constraintTop_toBottomOf="@+id/price_label_tv" />
+
+    <EditText
+        android:id="@+id/total_price_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:minWidth="100dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/total_price_label_tv"
+        app:layout_constraintStart_toStartOf="@+id/price_et"
+        tools:text="128" />
+
+    <TextView
+        android:id="@+id/unit_total_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/pln"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/total_price_et"
+        app:layout_constraintStart_toEndOf="@+id/total_price_et" />
+
+    <TextView
+        android:id="@+id/note_label_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/note"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/total_price_label_tv"
+        app:layout_constraintTop_toBottomOf="@+id/total_price_label_tv" />
+
+    <EditText
+        android:id="@+id/note_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/note_label_tv"
+        app:layout_constraintTop_toBottomOf="@+id/note_label_tv"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+
+
+</android.support.constraint.ConstraintLayout>

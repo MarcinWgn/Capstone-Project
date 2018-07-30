@@ -7,6 +7,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.sql.Ref;
 import java.util.List;
 
 /**
@@ -31,18 +32,21 @@ public interface CarDao {
     @Query("SELECT * FROM refueling_table WHERE refueling_table.car_id= :id")
     LiveData<List<Refueling>> getCarRefueling(int id);
 
-    @Query("DELETE FROM car_table WHERE car_table.car_id= :id")
-    void deleteCar(int id);
-
-    @Query("DELETE FROM refueling_table WHERE refueling_table.refueling_id= :id")
-    void deleteRefueling(int id);
-
     @Query("SELECT * FROM car_table WHERE car_id= :id")
     LiveData<Car>getCar(int id);
+
+    @Query("SELECT * FROM refueling_table WHERE refueling_id= :id")
+    LiveData<Refueling>getRefueling(int id);
 
     @Update
     void updateCar(Car... car);
 
     @Delete
     void deleteCars(Car... cars);
+
+    @Update
+    void updateRefueling(Refueling... refueling);
+
+    @Delete
+    void deleteRefueling(Refueling... refueling);
 }

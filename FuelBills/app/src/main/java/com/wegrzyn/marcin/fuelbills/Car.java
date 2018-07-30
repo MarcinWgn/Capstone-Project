@@ -16,14 +16,19 @@ public class Car {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "car_id")
     private int carId;
+
     @ColumnInfo(name = "name")
     private String name;
+
     @ColumnInfo(name = "vin")
     private String vin;
+
     @ColumnInfo(name = "fuel")
     private int fuelType;
+
     @ColumnInfo(name = "plate")
     private String plate;
+
     @ColumnInfo(name = "tank_size")
     private int tankSize;
 
