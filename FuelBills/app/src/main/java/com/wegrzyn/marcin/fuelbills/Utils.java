@@ -6,7 +6,7 @@ package com.wegrzyn.marcin.fuelbills;
  */
 class Utils {
     static String checkNum(String s){
-        if(s.length()==0) return "0";
+        if(s==null||s.length()==0) return "0";
         else return s;
     }
 }

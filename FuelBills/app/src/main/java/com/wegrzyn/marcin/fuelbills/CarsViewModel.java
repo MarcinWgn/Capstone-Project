@@ -34,6 +34,7 @@ public class CarsViewModel extends AndroidViewModel {
     LiveData<List<Refueling>> getAllRefillings(){return allRefueling;};
     LiveData<List<Refueling>> getRefuelingById(int carId){return carRepository.getRefuelingById(carId);}
     LiveData<Refueling> getRefueling(int id){return carRepository.getRefueling(id);}
+    LiveData<Refueling> getMaxDist(){return carRepository.getMaxDist();}
 
     public void insertCar(Car car) {
         carRepository.insertCar(car);

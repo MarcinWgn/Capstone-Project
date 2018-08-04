@@ -38,6 +38,9 @@ public interface CarDao {
     @Query("SELECT * FROM refueling_table WHERE refueling_id= :id")
     LiveData<Refueling>getRefueling(int id);
 
+    @Query("SELECT * FROM refueling_table ORDER BY distance DESC LIMIT 1")
+    LiveData<Refueling>getMaxDistance();
+
     @Update
     void updateCar(Car... car);
 

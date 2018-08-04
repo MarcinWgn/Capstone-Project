@@ -117,20 +117,19 @@
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             android:background="@android:drawable/ic_menu_delete"
+            android:contentDescription="TODO"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="TODO" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/insert_item_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:drawable/ic_menu_edit"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:contentDescription="TODO" />
+            android:contentDescription="TODO"
+            app:layout_constraintEnd_toStartOf="@+id/del_car_btn"
+            app:layout_constraintTop_toTopOf="@+id/del_car_btn" />
 
     </android.support.constraint.ConstraintLayout>
 

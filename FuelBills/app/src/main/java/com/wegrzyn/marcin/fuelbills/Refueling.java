@@ -29,6 +29,7 @@ public class Refueling {
 
     @ColumnInfo(name = "trip_dist")
     private int tripDist;
+
     @ColumnInfo(name = "distance")
     private int dist;
 
@@ -41,17 +42,30 @@ public class Refueling {
     @ColumnInfo(name = "total_price")
     private double totalPrice;
 
+    @ColumnInfo (name = "avg")
+    private float avg;
+
     @ColumnInfo(name = "note")
     private String note;
 
-    public Refueling(int carId, String date, int tripDist, float quantity, double price, double totalPrice, String note) {
+    public Refueling(int carId, String date, int tripDist,int dist, float quantity, double price, double totalPrice,float avg, String note) {
         this.carId = carId;
         this.date = date;
         this.tripDist = tripDist;
+        this.dist = dist;
         this.quantity = quantity;
         this.price = price;
         this.totalPrice = totalPrice;
+        this.avg = avg;
         this.note = note;
+    }
+
+    public float getAvg() {
+        return avg;
+    }
+
+    public void setAvg(float avg) {
+        this.avg = avg;
     }
 
     public int getRefuelingId() {

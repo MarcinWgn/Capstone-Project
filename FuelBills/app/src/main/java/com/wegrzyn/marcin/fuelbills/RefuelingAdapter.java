@@ -1,6 +1,7 @@
 package com.wegrzyn.marcin.fuelbills;
 
 import android.content.Context;
+import android.icu.text.DecimalFormat;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Marcin Węgrzyn on 29.07.2018.
@@ -52,6 +54,9 @@ public class RefuelingAdapter extends RecyclerView.Adapter<RefuelingAdapter.Refu
             int tripDist = refueling.getTripDist();
             holder.tripDistance.setText(String.valueOf(tripDist));
 
+            int dist = refueling.getDist();
+            holder.distance.setText(String.valueOf(dist));
+
             float quantity = refueling.getQuantity();
             holder.quantity.setText(String.valueOf(quantity));
 
@@ -60,6 +65,10 @@ public class RefuelingAdapter extends RecyclerView.Adapter<RefuelingAdapter.Refu
 
             double totalPrice = refueling.getTotalPrice();
             holder.totalPrice.setText(String.valueOf(totalPrice));
+
+            float avg = refueling.getAvg();
+
+            holder.avg.setText( String.format(Locale.getDefault(),"%.2f",avg));
 
             String note = refueling.getNote();
             holder.note.setText(note);
@@ -80,6 +89,7 @@ public class RefuelingAdapter extends RecyclerView.Adapter<RefuelingAdapter.Refu
             TextView quantity;
             TextView price;
             TextView totalPrice;
+            TextView avg;
             TextView note;
 
             ImageButton deleteRef;
@@ -94,6 +104,7 @@ public class RefuelingAdapter extends RecyclerView.Adapter<RefuelingAdapter.Refu
             quantity = itemView.findViewById(R.id.quantity_et);
             price = itemView.findViewById(R.id.price_et);
             totalPrice = itemView.findViewById(R.id.total_price_et);
+            avg = itemView.findViewById(R.id.avg_tv);
             note = itemView.findViewById(R.id.note_et);
             deleteRef = itemView.findViewById(R.id.del_refueling_btn);
             editRef = itemView.findViewById(R.id.edit_refueling_btn);

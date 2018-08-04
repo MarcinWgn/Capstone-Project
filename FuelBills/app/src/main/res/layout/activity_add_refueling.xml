@@ -23,9 +23,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:minWidth="100dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/date_label_ref_tv"
         app:layout_constraintStart_toEndOf="@+id/trip_ref_dist_label_tv"
         tools:text="12.02.2012" />
+
+    <TextView
+        android:id="@+id/date_label_desc_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/click_to_edit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/date_ref_tv"
+        app:layout_constraintStart_toEndOf="@+id/date_ref_tv" />
 
     <TextView
         android:id="@+id/trip_ref_dist_label_tv"
@@ -132,6 +143,7 @@
         android:id="@+id/price_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:imeOptions="normal"
         android:inputType="numberDecimal"
         android:minWidth="100dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/price_label_tv"
@@ -192,8 +204,10 @@
         android:id="@+id/note_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/note_label_tv"
         app:layout_constraintTop_toBottomOf="@+id/note_label_tv"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />

@@ -23,4 +23,8 @@
     <string name="refueling_list">Refueling List</string>
     <string name="add_refueling">Add Refueling</string>
     <string name="edit_refueling">Edit Refueling</string>
+    <string name="avg">avg</string>
+    <string name="l_100km">L/100km</string>
+    <string name="show_chart">show chart</string>
+    <string name="click_to_edit">click date to edit</string>
 </resources>

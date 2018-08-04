@@ -10,7 +10,11 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -89,5 +93,22 @@ public class RefuelingActivity extends AppCompatActivity implements ListItemClic
         Intent intent = new Intent(RefuelingActivity.this, AddRefuelingActivity.class);
         intent.putExtra(REFUELING_ID,id);
         startActivity(intent);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.refueling_activity_menu, menu);
+        return true; }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.show_chart_activity_item_menu:
+                Toast.makeText(getBaseContext(),"Show chart",Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
