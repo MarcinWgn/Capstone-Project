@@ -105,7 +105,9 @@ public class RefuelingActivity extends AppCompatActivity implements ListItemClic
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.show_chart_activity_item_menu:
-                Toast.makeText(getBaseContext(),"Show chart",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RefuelingActivity.this, ChartActivity.class);
+                intent.putExtra(CAR_ID,carId);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

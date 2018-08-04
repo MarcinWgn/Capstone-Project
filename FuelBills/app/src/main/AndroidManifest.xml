@@ -26,7 +26,11 @@
             android:name=".RefuelingActivity"
             android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".AddRefuelingActivity"
+        <activity
+            android:name=".AddRefuelingActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".ChartActivity"
             android:parentActivityName=".MainActivity">
         </activity>
     </application>
