@@ -2,7 +2,7 @@ package com.wegrzyn.marcin.fuelbills;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.icu.util.ULocale;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -21,9 +21,9 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import static com.wegrzyn.marcin.fuelbills.Utils.checkNum;
+import static com.wegrzyn.marcin.fuelbills.Utils.numberFormat;
 
 public class AddRefuelingActivity extends AppCompatActivity implements DatePickerFragment.OnDatePicListener {
 
@@ -86,6 +86,19 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
             });
         }
         setActionBarTitle();
+        maxDist();
+    }
+
+    private void maxDist() {
+        if(editInt==-1){
+        carsViewModel.getMaxDist(carId).observe(this, new Observer<Refueling>() {
+            @Override
+            public void onChanged(@Nullable Refueling refueling) {
+                if(refueling!= null)
+                dist.setText(String.valueOf(refueling.getDist()));
+            }
+        });
+    }
     }
 
     private void setActionBarTitle() {
@@ -134,14 +147,16 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
                     String priceString = price.getText().toString();
                     final double priceNum = Double.parseDouble(checkNum(priceString));
 
-                    String calculatePrice = String.format(Locale.US,
-                            "%.2f",priceNum*quantityNum);;
+                    String calculatePrice = Utils.numberFormat((float)(priceNum*quantityNum));
 
                     totalPrice.setText(calculatePrice);
                 }
                 return false;
             }
         });
+
+
+
 
     }
 
@@ -200,16 +215,24 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
 
             carsViewModel.updateRefueling(tempRefueling);
         }
+        sendWidgetBroadcast(avg);
+    }
 
+    private void sendWidgetBroadcast(float avg) {
+        Intent intentWidget = new Intent(AvgAppWidget.ACTION_UPDATE);
+        intentWidget.putExtra(AvgAppWidget.EXTRA_DATA, Utils.numberFormat(avg));
+        sendBroadcast(intentWidget);
     }
 
     private float getAvg(int tripDist, float quantity) {
         float avg = (quantity*100)/tripDist;
         Toast.makeText(getBaseContext(),"Your AVG is: "
-                +String.format(Locale.US,"%.2f",avg)
+                +numberFormat(avg)
                 ,Toast.LENGTH_SHORT).show();
         return avg;
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -16,6 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.List;
 
 public class RefuelingActivity extends AppCompatActivity implements ListItemClickListener {
@@ -42,6 +45,10 @@ public class RefuelingActivity extends AppCompatActivity implements ListItemClic
             carId= getIntent().getIntExtra(MainActivity.CAR_ID,-1);
             Log.d(TAG,"id: "+String.valueOf(carId));
         }
+
+        AdView adView = findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
         RecyclerView recyclerView = findViewById(R.id.refueling_recycler_view);
         recyclerView.setHasFixedSize(true);

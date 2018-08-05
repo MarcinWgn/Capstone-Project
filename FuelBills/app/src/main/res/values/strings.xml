@@ -27,4 +27,7 @@
     <string name="l_100km">L/100km</string>
     <string name="show_chart">show chart</string>
     <string name="click_to_edit">click date to edit</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="last_avg">last avg</string>
 </resources>

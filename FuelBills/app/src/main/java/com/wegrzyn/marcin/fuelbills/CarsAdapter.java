@@ -24,14 +24,8 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
 
     CarsAdapter(Context context, ListItemClickListener listItemClickListener) {
         this.context = context;
-        itemClickListener = listItemClickListener
-;    }
-//
-//    interface ListItemClickListener{
-//        void onItemClick(int itemIndex);
-//        void onItemDelete(int itemDelete);
-//        void editItemData(int id);
-//    }
+        itemClickListener = listItemClickListener ;    }
+
     void setCars(List<Car>carList){
         this.carList = carList;
         notifyDataSetChanged();

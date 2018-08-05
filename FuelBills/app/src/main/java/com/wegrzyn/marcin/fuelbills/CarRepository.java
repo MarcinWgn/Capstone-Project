@@ -33,7 +33,7 @@ public class CarRepository {
     LiveData<Car> getCar(int id){ return carDao.getCar(id);}
     LiveData<List<Refueling>> getRefuelingById(int carId){return carDao.getCarRefueling(carId);}
     LiveData<Refueling> getRefueling(int id){return  carDao.getRefueling(id);}
-    LiveData<Refueling> getMaxDist(){return  carDao.getMaxDistance();}
+    LiveData<Refueling> getMaxDist(int id){return  carDao.getMaxDistance(id);}
 
     public void insertCar(Car car){
         new insertCarTask(carDao).execute(car);
