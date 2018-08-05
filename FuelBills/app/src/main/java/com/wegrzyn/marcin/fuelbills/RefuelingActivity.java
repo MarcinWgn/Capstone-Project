@@ -54,7 +54,7 @@ public class RefuelingActivity extends AppCompatActivity implements ListItemClic
         recyclerView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager mLayoutManager =
-                new GridLayoutManager(this, 1);
+                new GridLayoutManager(this, getResources().getInteger(R.integer.grid_size));
         recyclerView.setLayoutManager(mLayoutManager);
 
         refuelingAdapter = new RefuelingAdapter(this,this);

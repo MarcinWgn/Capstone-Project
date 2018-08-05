@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,6 +30,7 @@ import static com.wegrzyn.marcin.fuelbills.Utils.numberFormat;
 public class AddRefuelingActivity extends AppCompatActivity implements DatePickerFragment.OnDatePicListener {
 
     private static final String TAG =AddRefuelingActivity.class.getSimpleName() ;
+    public static final String AVG = "avg";
     private CarsViewModel carsViewModel;
     private int editInt;
     private int carId;
@@ -43,13 +46,16 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
     private EditText note;
 
     private Refueling tempRefueling;
-    private int maxDistance;
+
+    private FirebaseAnalytics analytics;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_refueling);
+
+        analytics = FirebaseAnalytics.getInstance(this);
 
         setView();
 
@@ -216,6 +222,14 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
             carsViewModel.updateRefueling(tempRefueling);
         }
         sendWidgetBroadcast(avg);
+        logAnalytics(avg);
+    }
+
+    public void logAnalytics(float avg){
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, AVG);
+        bundle.putString(FirebaseAnalytics.Param.VALUE,Utils.numberFormat(avg));
+        analytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM,bundle);
     }
 
     private void sendWidgetBroadcast(float avg) {

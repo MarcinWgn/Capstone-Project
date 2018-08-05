@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
         recyclerView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager mLayoutManager =
-                new GridLayoutManager(this, 1);
+                new GridLayoutManager(this, getResources().getInteger(R.integer.grid_size));
         recyclerView.setLayoutManager(mLayoutManager);
 
         carsAdapter = new CarsAdapter(this, this);
@@ -94,23 +94,6 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
         Intent intent = new Intent(MainActivity.this, AddCarActivity.class);
         intent.putExtra(EDIT,id);
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_activiry_menu, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_car_item_menu:
-                addCar();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     private void addCar() {
