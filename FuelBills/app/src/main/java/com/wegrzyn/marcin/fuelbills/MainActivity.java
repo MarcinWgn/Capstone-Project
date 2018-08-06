@@ -3,10 +3,10 @@ package com.wegrzyn.marcin.fuelbills;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -19,13 +19,14 @@ import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ListItemClickListener {
+public class MainActivity extends AppCompatActivity
+        implements ListItemClickListener {
 
+    private static final String TAG = MainActivity.class.getSimpleName() ;
     public static final String EDIT = "edit";
     public static final String CAR_ID = "car_id";
     private CarsViewModel carsViewModel;
     private CarsAdapter carsAdapter;
-
     private List<Car> mCars;
 
     @Override
@@ -33,9 +34,8 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Car List");
+            getSupportActionBar().setTitle(R.string.car_list);
         }
 
         AdView adView = findViewById(R.id.ad_view);
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
 
         carsAdapter = new CarsAdapter(this, this);
         recyclerView.setAdapter(carsAdapter);
-
 
         carsViewModel = ViewModelProviders.of(this).get(CarsViewModel.class);
         carsViewModel.getAllCars().observe(this, new Observer<List<Car>>() {
@@ -100,5 +99,23 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
         Intent intent = new Intent(MainActivity.this, AddCarActivity.class);
         intent.putExtra(EDIT,-1);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_menu, menu);
+        return true; }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settings_menu:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

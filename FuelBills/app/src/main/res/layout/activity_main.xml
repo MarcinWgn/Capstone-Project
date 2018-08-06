@@ -18,7 +18,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/car_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/add_car_fab"

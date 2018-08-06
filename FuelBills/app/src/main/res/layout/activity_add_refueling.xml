@@ -8,23 +8,19 @@
 
     <TextView
         android:id="@+id/date_label_ref_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AddTextViewStyle"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/date"
-        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/date_ref_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:minWidth="100dp"
-        android:textSize="18sp"
         android:textStyle="bold"
+        style="@style/AddTextViewStyle"
         app:layout_constraintBaseline_toBaselineOf="@+id/date_label_ref_tv"
         app:layout_constraintStart_toEndOf="@+id/trip_ref_dist_label_tv"
         tools:text="12.02.2012" />
@@ -33,183 +29,160 @@
         android:id="@+id/date_label_desc_tv"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
-        android:layout_marginStart="8dp"
         android:text="@string/click_to_edit"
         app:layout_constraintBaseline_toBaselineOf="@+id/date_ref_tv"
-        app:layout_constraintStart_toEndOf="@+id/date_ref_tv" />
+        app:layout_constraintStart_toStartOf="@+id/trip_unit_tv" />
 
     <TextView
         android:id="@+id/trip_ref_dist_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/trip_distance"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_label_ref_tv" />
 
     <EditText
         android:id="@+id/trip_ref_dist_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AddEditTextStyle"
+        android:layout_height="0dp"
+        android:hint="@string/trip_distance"
         android:inputType="number"
-        android:minWidth="100dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/trip_ref_dist_label_tv"
         app:layout_constraintStart_toStartOf="@+id/date_ref_tv"
         tools:text="82" />
 
     <TextView
         android:id="@+id/trip_unit_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/km"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintBaseline_toBaselineOf="@+id/trip_ref_dist_et"
         app:layout_constraintStart_toEndOf="@+id/trip_ref_dist_et" />
 
     <TextView
         android:id="@+id/total_dist_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         android:text="@string/distance"
         app:layout_constraintStart_toStartOf="@+id/trip_ref_dist_label_tv"
         app:layout_constraintTop_toBottomOf="@+id/trip_ref_dist_label_tv" />
 
     <EditText
         android:id="@+id/total_dist_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AddEditTextStyle"
+        android:hint="@string/distance"
         android:inputType="number"
-        android:minWidth="100dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/total_dist_label_tv"
         app:layout_constraintStart_toStartOf="@+id/trip_ref_dist_et"
         tools:text="128000" />
 
     <TextView
         android:id="@+id/total_unit_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/km"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintBaseline_toBaselineOf="@+id/total_dist_et"
         app:layout_constraintStart_toEndOf="@+id/total_dist_et" />
 
     <TextView
         android:id="@+id/quantity_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/quantity"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintStart_toStartOf="@+id/total_dist_label_tv"
         app:layout_constraintTop_toBottomOf="@+id/total_dist_label_tv" />
 
     <EditText
         android:id="@+id/quantity_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AddEditTextStyle"
+        android:hint="@string/quantity"
         android:inputType="numberDecimal"
-        android:minWidth="100dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/quantity_label_tv"
         app:layout_constraintStart_toStartOf="@+id/total_dist_et"
         tools:text="47" />
 
     <TextView
         android:id="@+id/quantity_unit_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/litres"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintBaseline_toBaselineOf="@+id/quantity_et"
         app:layout_constraintStart_toEndOf="@+id/quantity_et" />
 
     <TextView
         android:id="@+id/price_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/price"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintStart_toStartOf="@+id/quantity_label_tv"
         app:layout_constraintTop_toBottomOf="@+id/quantity_label_tv" />
 
     <EditText
         android:id="@+id/price_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AddEditTextStyle"
+        android:hint="@string/price"
         android:imeOptions="normal"
         android:inputType="numberDecimal"
-        android:minWidth="100dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/price_label_tv"
         app:layout_constraintStart_toStartOf="@+id/quantity_et"
         tools:text="4,75" />
 
     <TextView
         android:id="@+id/unit_price_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/pln"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintBaseline_toBaselineOf="@+id/price_et"
         app:layout_constraintStart_toEndOf="@+id/price_et" />
 
     <TextView
         android:id="@+id/total_price_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:text="@string/total_price"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintStart_toStartOf="@+id/price_label_tv"
         app:layout_constraintTop_toBottomOf="@+id/price_label_tv" />
 
     <EditText
         android:id="@+id/total_price_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AddEditTextStyle"
+        android:hint="@string/total_price"
         android:inputType="numberDecimal"
-        android:minWidth="100dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/total_price_label_tv"
         app:layout_constraintStart_toStartOf="@+id/price_et"
         tools:text="128" />
 
     <TextView
         android:id="@+id/unit_total_price_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/pln"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintBaseline_toBaselineOf="@+id/total_price_et"
         app:layout_constraintStart_toEndOf="@+id/total_price_et" />
 
     <TextView
         android:id="@+id/note_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        style="@style/AddTextViewStyle"
         android:text="@string/note"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/total_price_label_tv"
-        app:layout_constraintTop_toBottomOf="@+id/total_price_label_tv" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/note_et"
+        app:layout_constraintStart_toStartOf="@+id/total_price_label_tv" />
 
     <EditText
         android:id="@+id/note_et"
+        style="@style/AddEditTextStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/note"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/note_label_tv"
-        app:layout_constraintTop_toBottomOf="@+id/note_label_tv"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/total_price_et"
+        app:layout_constraintTop_toBottomOf="@+id/total_price_et"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
 
 

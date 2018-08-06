@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:foreground="?selectableItemBackground">
+    android:layout_margin="4dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,110 +13,75 @@
 
         <TextView
             android:id="@+id/name_label_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/car_name"
+            style="@style/CardItemTextViewStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            style="@style/CardItemTextViewStyle"
             app:layout_constraintBaseline_toBaselineOf="@+id/name_label_tv"
             app:layout_constraintStart_toEndOf="@+id/name_label_tv"
             tools:text="Ford Focus RS" />
 
         <TextView
             android:id="@+id/vin_label_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/vin"
+            style="@style/CardItemTextViewStyle"
             app:layout_constraintStart_toStartOf="@+id/name_label_tv"
             app:layout_constraintTop_toBottomOf="@+id/name_label_tv" />
 
         <TextView
             android:id="@+id/vin_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/CardItemTextViewStyle"
             app:layout_constraintBaseline_toBaselineOf="@+id/vin_label_tv"
             app:layout_constraintStart_toStartOf="@+id/name_tv"
             tools:text="WF0DP3TH4G4113966" />
 
         <TextView
             android:id="@+id/fuel_label_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/fuel"
+            style="@style/CardItemTextViewStyle"
             app:layout_constraintStart_toStartOf="@+id/vin_label_tv"
             app:layout_constraintTop_toBottomOf="@+id/vin_label_tv" />
 
         <TextView
             android:id="@+id/fuel_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/CardItemTextViewStyle"
             app:layout_constraintBaseline_toBaselineOf="@+id/fuel_label_tv"
             app:layout_constraintStart_toStartOf="@+id/vin_tv"
             tools:text="Gasoline" />
 
         <TextView
             android:id="@+id/plate_label_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/CardItemTextViewStyle"
+            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/plate"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/fuel_label_tv"
             app:layout_constraintTop_toBottomOf="@+id/fuel_label_tv" />
 
         <TextView
             android:id="@+id/plate_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/CardItemTextViewStyle"
             app:layout_constraintBaseline_toBaselineOf="@+id/plate_label_tv"
             app:layout_constraintStart_toStartOf="@+id/fuel_tv"
             tools:text="UDACITY" />
 
-        <TextView
-            android:id="@+id/tank_size_label_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/tank"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/plate_label_tv"
-            app:layout_constraintTop_toBottomOf="@+id/plate_label_tv" />
-
-        <TextView
-            android:id="@+id/tank_size_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tank_size_label_tv"
-            app:layout_constraintStart_toStartOf="@+id/plate_tv"
-            tools:text="45" />
-
-        <TextView
-            android:id="@+id/tank_size_unit_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/litres"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tank_size_tv"
-            app:layout_constraintStart_toEndOf="@+id/tank_size_tv" />
-
         <ImageButton
             android:id="@+id/del_car_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             android:background="@android:drawable/ic_menu_delete"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/car_button"
+            style="@style/CardItemTextViewStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:background="@android:drawable/ic_menu_edit"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/insert_button"
             app:layout_constraintEnd_toStartOf="@+id/del_car_btn"
             app:layout_constraintTop_toTopOf="@+id/del_car_btn" />
 

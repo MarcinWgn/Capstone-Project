@@ -17,7 +17,6 @@
     <string name="quantity">Quantity</string>
     <string name="litres">L</string>
     <string name="price">Price</string>
-    <string name="pln">PLN</string>
     <string name="total_price">Total price</string>
     <string name="note">Note</string>
     <string name="refueling_list">Refueling List</string>
@@ -30,4 +29,22 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="last_avg">last avg</string>
+    <string name="car_button">car button</string>
+    <string name="insert_button">insert button</string>
+    <string name="refueling_button">refueling button</string>
+    <string name="settings">settings</string>
+    <string name="f_efficiency">fuel efficiency</string>
+    <string name="currency">currency</string>
+    <string name="car_list">Car List</string>
+    <string name="key_list_fuel_unit">list_fuel_efficiency</string>
+    <string name="fuel_efficiency">fuel efficiency</string>
+    <string name="pln">PLN</string>
+    <string name="gal">Gal</string>
+    <string name="mpg">MPG</string>
+    <string name="mil">mil</string>
+    <string name="galoon">gal</string>
+    <string name="key_list_currency">list_currency</string>
+    <string name="date_picker">datePicker</string>
+    <string name="your_avg">Your AVG is:</string>
+    <string name="edit_car">Edit Car</string>
 </resources>

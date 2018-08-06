@@ -7,6 +7,4 @@
         android:orderInCategory="1"
         android:title="@string/show_chart"
         app:showAsAction="always" />
-
-
 </menu>

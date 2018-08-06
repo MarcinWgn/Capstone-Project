@@ -5,8 +5,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.util.Date;
-
 /**
  * Created by Marcin Węgrzyn on 23.07.2018.
  * wireamg@gmail.com
@@ -48,7 +46,14 @@ public class Refueling {
     @ColumnInfo(name = "note")
     private String note;
 
-    public Refueling(int carId, String date, int tripDist,int dist, float quantity, double price, double totalPrice,float avg, String note) {
+    @ColumnInfo(name = "fuel_unit")
+    private String fuelUnit;
+
+    @ColumnInfo(name = "currency")
+    private String currency;
+
+    public Refueling(int carId, String date, int tripDist,int dist, float quantity,
+                     double price, double totalPrice,float avg, String note, String fuelUnit, String currency) {
         this.carId = carId;
         this.date = date;
         this.tripDist = tripDist;
@@ -58,6 +63,8 @@ public class Refueling {
         this.totalPrice = totalPrice;
         this.avg = avg;
         this.note = note;
+        this.fuelUnit = fuelUnit;
+        this.currency = currency;
     }
 
     public float getAvg() {
@@ -131,6 +138,26 @@ public class Refueling {
     public void setNote(String note) {
         this.note = note;
     }
-    public int getDist() { return dist; }
-    public void setDist(int dist) { this.dist = dist; }
+    public int getDist() {
+        return dist;
+    }
+    public void setDist(int dist) {
+        this.dist = dist;
+    }
+
+    public String getFuelUnit() {
+        return fuelUnit;
+    }
+
+    public void setFuelUnit(String fuelUnit) {
+        this.fuelUnit = fuelUnit;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
 }

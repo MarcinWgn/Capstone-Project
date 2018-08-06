@@ -5,4 +5,15 @@
         <item>Diesel</item>
         <item>Lpg</item>
     </string-array>
+    
+    <string-array name="currency">
+        <item>PLN</item>
+        <item>USD</item>
+        <item>EUR</item>
+    </string-array>
+
+    <string-array name="fuel_efficiency">
+        <item>L/100km</item>
+        <item>MPG</item>
+    </string-array>
 </resources>

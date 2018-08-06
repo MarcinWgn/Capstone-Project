@@ -6,7 +6,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 public class AvgAppWidget extends AppWidgetProvider {
@@ -15,8 +14,6 @@ public class AvgAppWidget extends AppWidgetProvider {
 
     public static final String ACTION_UPDATE = "android.appwidget.action.APPWIDGET_UPDATE";
     public static final String EXTRA_DATA ="extra_data";
-
-    private static String avg;
 
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -43,11 +40,10 @@ public class AvgAppWidget extends AppWidgetProvider {
         super.onReceive(context, intent);
 
         if(intent.hasExtra(EXTRA_DATA)){
-            avg = intent.getStringExtra(EXTRA_DATA);
+            String avg = intent.getStringExtra(EXTRA_DATA);
 
             RemoteViews views = new RemoteViews(context.getPackageName(),R.layout.avg_app_widget);
-            views.setTextViewText(R.id.avg_widget_tv, avg
-                    +context.getResources().getString(R.string.l_100km));
+            views.setTextViewText(R.id.avg_widget_tv, avg);
 
             ComponentName appWidget = new ComponentName(context, AvgAppWidget.class);
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -57,12 +53,11 @@ public class AvgAppWidget extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
     }
 
     @Override
     public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
+
     }
 }
 

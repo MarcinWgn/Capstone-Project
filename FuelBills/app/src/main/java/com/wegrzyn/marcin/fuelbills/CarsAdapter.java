@@ -19,7 +19,6 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
 
     private final Context context;
     private List<Car> carList;
-
     private ListItemClickListener itemClickListener;
 
     CarsAdapter(Context context, ListItemClickListener listItemClickListener) {
@@ -52,8 +51,6 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
             setFuelType(holder.fuelTextView,fuel);
             String plate = car.getPlate();
             if(plate!=null) holder.plateTextView.setText(plate);
-            String tank = String.valueOf(car.getTankSize());
-            if(!tank.isEmpty()) holder.tankTextView.setText(tank);
         }
     }
 
@@ -69,7 +66,6 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
         TextView vinTextView;
         TextView fuelTextView;
         TextView plateTextView;
-        TextView tankTextView;
         ImageButton deleteCar;
         ImageButton editCar;
 
@@ -80,7 +76,6 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsViewHolder
             vinTextView = itemView.findViewById(R.id.vin_tv);
             fuelTextView = itemView.findViewById(R.id.fuel_tv);
             plateTextView = itemView.findViewById(R.id.plate_tv);
-            tankTextView = itemView.findViewById(R.id.tank_size_tv);
             deleteCar = itemView.findViewById(R.id.del_car_btn);
             editCar = itemView.findViewById(R.id.insert_item_btn);
 

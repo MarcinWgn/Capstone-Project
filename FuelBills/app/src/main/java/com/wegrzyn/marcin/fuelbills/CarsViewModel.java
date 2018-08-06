@@ -5,7 +5,6 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
-import java.sql.Ref;
 import java.util.List;
 
 /**

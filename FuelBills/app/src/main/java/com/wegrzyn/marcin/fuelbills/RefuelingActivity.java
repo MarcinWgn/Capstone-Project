@@ -3,18 +3,16 @@ package com.wegrzyn.marcin.fuelbills;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -23,7 +21,6 @@ import java.util.List;
 
 public class RefuelingActivity extends AppCompatActivity implements ListItemClickListener {
 
-    private static final String TAG = RefuelingActivity.class.getSimpleName();
     public static final String REFUELING_ID = "refueling_id";
     public static final String CAR_ID = "car_id";
     private int carId;
@@ -43,7 +40,6 @@ public class RefuelingActivity extends AppCompatActivity implements ListItemClic
 
         if(getIntent().hasExtra(MainActivity.CAR_ID)){
             carId= getIntent().getIntExtra(MainActivity.CAR_ID,-1);
-            Log.d(TAG,"id: "+String.valueOf(carId));
         }
 
         AdView adView = findViewById(R.id.ad_view);
@@ -67,7 +63,6 @@ public class RefuelingActivity extends AppCompatActivity implements ListItemClic
             public void onChanged(@Nullable List<Refueling> refuelling) {
                 refuelingList = refuelling;
                 refuelingAdapter.setRefuelingList(refuelling);
-                Log.d(TAG,"list size: "+ String.valueOf(refuelling.size()));
             }
         });
 
@@ -85,18 +80,15 @@ public class RefuelingActivity extends AppCompatActivity implements ListItemClic
 
     @Override
     public void onItemClick(int itemIndex) {
-        Log.d(TAG,"item click: "+String.valueOf(itemIndex));
     }
 
     @Override
     public void onItemDelete(int itemDelete) {
-        Log.d(TAG,"item delete: "+String.valueOf(itemDelete));
         carsViewModel.deleteRefueling(refuelingList.get(itemDelete));
     }
 
     @Override
     public void editItemData(int id) {
-        Log.d(TAG,"item edit"+String.valueOf(id));
         Intent intent = new Intent(RefuelingActivity.this, AddRefuelingActivity.class);
         intent.putExtra(REFUELING_ID,id);
         startActivity(intent);
@@ -109,7 +101,6 @@ public class RefuelingActivity extends AppCompatActivity implements ListItemClic
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
         switch (item.getItemId()) {
             case R.id.show_chart_activity_item_menu:
                 Intent intent = new Intent(RefuelingActivity.this, ChartActivity.class);

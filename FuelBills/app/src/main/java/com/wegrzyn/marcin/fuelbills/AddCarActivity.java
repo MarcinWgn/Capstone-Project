@@ -2,9 +2,9 @@ package com.wegrzyn.marcin.fuelbills;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,11 +13,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import static com.wegrzyn.marcin.fuelbills.Utils.checkNum;
 
-public class AddCarActivity extends AppCompatActivity {
+public class AddCarActivity extends AppCompatActivity  {
 
     private static final String TAG = AddCarActivity.class.getSimpleName() ;
     private CarsViewModel carsViewModel;
@@ -25,7 +23,6 @@ public class AddCarActivity extends AppCompatActivity {
     private EditText nameEt;
     private EditText vinEt;
     private EditText plateEt;
-    private EditText tankEt;
     private Spinner fuelSpinner;
 
     private int fuelType;
@@ -39,7 +36,6 @@ public class AddCarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_car);
 
         setViews();
-
         fuelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -67,7 +63,6 @@ public class AddCarActivity extends AppCompatActivity {
                     nameEt.setText(car.getName());
                     vinEt.setText(car.getVin());
                     plateEt.setText(car.getPlate());
-                    tankEt.setText(String.valueOf(car.getTankSize()));
                     fuelSpinner.setSelection(car.getFuelType());
                 }
             });
@@ -80,9 +75,9 @@ public class AddCarActivity extends AppCompatActivity {
     private void setActionBarTitle() {
         if (getSupportActionBar() != null) {
             if(editInt==-1)
-                getSupportActionBar().setTitle("Add Car");
+                getSupportActionBar().setTitle(getString(R.string.add_car));
             else
-                getSupportActionBar().setTitle("Edit Car");
+                getSupportActionBar().setTitle(R.string.edit_car);
         }
     }
 
@@ -90,7 +85,6 @@ public class AddCarActivity extends AppCompatActivity {
         nameEt = findViewById(R.id.name_et);
         vinEt = findViewById(R.id.vin_et);
         plateEt = findViewById(R.id.plate_et);
-        tankEt = findViewById(R.id.tank_size_et);
         fuelSpinner = findViewById(R.id.fuel_spinner);
     }
 
@@ -98,16 +92,14 @@ public class AddCarActivity extends AppCompatActivity {
         String name = nameEt.getText().toString();
         String vin = vinEt.getText().toString();
         String plate = plateEt.getText().toString();
-        String tank = tankEt.getText().toString();
 
         if(editInt==-1){
-            carsViewModel.insertCar(new Car(name,vin,fuelType,plate,Integer.parseInt(checkNum(tank))));
+            carsViewModel.insertCar(new Car(name,vin,fuelType,plate));
         }else {
             tempCar.setName(name);
             tempCar.setVin(vin);
             tempCar.setPlate(plate);
             tempCar.setFuelType(fuelType);
-            tempCar.setTankSize(Integer.parseInt(checkNum(tank)));
             carsViewModel.updateCar(tempCar);
         }
     }
@@ -135,4 +127,5 @@ public class AddCarActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

@@ -2,9 +2,7 @@ package com.wegrzyn.marcin.fuelbills;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 
 /**
  * Created by Marcin Węgrzyn on 23.07.2018.
@@ -29,15 +27,11 @@ public class Car {
     @ColumnInfo(name = "plate")
     private String plate;
 
-    @ColumnInfo(name = "tank_size")
-    private int tankSize;
-
-    public Car(String name, String vin, int fuelType, String plate, int tankSize) {
+    public Car(String name, String vin, int fuelType, String plate) {
         this.name = name;
         this.vin = vin;
         this.fuelType = fuelType;
         this.plate = plate;
-        this.tankSize = tankSize;
     }
 
     public int getCarId() {
@@ -80,11 +74,4 @@ public class Car {
         this.plate = plate;
     }
 
-    public int getTankSize() {
-        return tankSize;
-    }
-
-    public void setTankSize(int tankSize) {
-        this.tankSize = tankSize;
-    }
 }

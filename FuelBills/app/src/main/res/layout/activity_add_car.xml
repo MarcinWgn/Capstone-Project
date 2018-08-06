@@ -4,57 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddCarActivity"
-    tools:layout_editor_absoluteY="81dp">
+    tools:context=".AddCarActivity">
 
     <TextView
         android:id="@+id/name_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/car_name"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintBaseline_toBaselineOf="@+id/name_et"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/name_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AddEditTextStyle"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:hint="@string/car_name"
+        android:inputType="text"
         android:minWidth="200dp"
-        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/name_label_tv"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Ford Focus RS" />
 
     <TextView
         android:id="@+id/vin_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/vin"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintBaseline_toBaselineOf="@+id/vin_et"
         app:layout_constraintStart_toStartOf="@+id/name_label_tv" />
 
     <EditText
         android:id="@+id/vin_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AddEditTextStyle"
         android:layout_marginTop="8dp"
+        android:hint="@string/vin"
+        android:inputType="text"
         android:minWidth="200dp"
-        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/name_et"
         app:layout_constraintTop_toBottomOf="@+id/name_et"
         tools:text="WF0DP3TH4G4113966" />
 
     <TextView
         android:id="@+id/fuel_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/fuel"
-        android:textSize="18sp"
+        style="@style/AddEditTextStyle"
         app:layout_constraintBottom_toBottomOf="@+id/fuel_spinner"
         app:layout_constraintStart_toStartOf="@+id/vin_label_tv" />
 
@@ -70,54 +63,21 @@
 
     <TextView
         android:id="@+id/plate_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/plate"
-        android:textSize="18sp"
+        style="@style/AddTextViewStyle"
         app:layout_constraintBaseline_toBaselineOf="@+id/plate_et"
         app:layout_constraintStart_toStartOf="@+id/fuel_label_tv" />
 
     <EditText
         android:id="@+id/plate_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/AddEditTextStyle"
         android:layout_marginTop="8dp"
+        android:hint="@string/plate"
+        android:inputType="text"
         android:minWidth="200dp"
-        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/fuel_spinner"
         app:layout_constraintTop_toBottomOf="@+id/fuel_spinner"
         tools:text="UDACITY" />
-
-    <TextView
-        android:id="@+id/tank_size_label_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tank"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tank_size_et"
-        app:layout_constraintStart_toStartOf="@+id/plate_label_tv" />
-
-    <EditText
-        android:id="@+id/tank_size_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:inputType="none|number"
-        android:minWidth="100dp"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/plate_et"
-        app:layout_constraintTop_toBottomOf="@+id/plate_et"
-        tools:text="45" />
-
-    <TextView
-        android:id="@+id/tank_size_unit_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="L"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tank_size_et"
-        app:layout_constraintStart_toEndOf="@+id/tank_size_et" />
 
 
 </android.support.constraint.ConstraintLayout>

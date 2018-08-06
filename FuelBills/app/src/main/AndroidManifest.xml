@@ -24,7 +24,6 @@
         <activity
             android:name=".AddCarActivity"
             android:parentActivityName=".MainActivity">
-
         </activity>
         <activity
             android:name=".RefuelingActivity"
@@ -48,6 +47,10 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/avg_app_widget_info" />
         </receiver>
+
+        <activity android:name=".SettingsActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

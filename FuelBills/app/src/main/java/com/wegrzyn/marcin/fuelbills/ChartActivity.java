@@ -2,17 +2,15 @@ package com.wegrzyn.marcin.fuelbills;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -30,7 +28,6 @@ public class ChartActivity extends AppCompatActivity {
     private LineChart avgLineChart;
     private LineChart distLineChart;
 
-    private CarsViewModel carsViewModel;
     private List<Refueling> refuelingList;
 
 
@@ -48,7 +45,7 @@ public class ChartActivity extends AppCompatActivity {
             Log.d(TAG,String.valueOf(carId));
         };
 
-        carsViewModel = ViewModelProviders.of(this).get(CarsViewModel.class);
+        CarsViewModel carsViewModel = ViewModelProviders.of(this).get(CarsViewModel.class);
 
         carsViewModel.getRefuelingById(carId).observe(this, new Observer<List<Refueling>>() {
             @Override

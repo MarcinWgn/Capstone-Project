@@ -3,11 +3,13 @@ package com.wegrzyn.marcin.fuelbills;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,6 +48,8 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
     private EditText note;
 
     private Refueling tempRefueling;
+    private String fuelUnit;
+    private String currencyUnit;
 
     private FirebaseAnalytics analytics;
 
@@ -57,6 +61,9 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
 
         analytics = FirebaseAnalytics.getInstance(this);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        fuelUnit = getUnit(sharedPreferences);
+        currencyUnit = getCurrencyUnit(sharedPreferences);
         setView();
 
         carsViewModel = ViewModelProviders.of(this).get(CarsViewModel.class);
@@ -72,8 +79,6 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         currentDate = dateFormat.format(dateNow);
         dateTv.setText(currentDate);
-
-
 
 
         if(editInt >-1){
@@ -125,20 +130,31 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
         totalPrice = findViewById(R.id.total_price_et);
         note = findViewById(R.id.note_et);
 
+        TextView tripUnit = findViewById(R.id.trip_unit_tv);
+        TextView totalTripUnit = findViewById(R.id.total_unit_tv);
+        TextView quantityUnit = findViewById(R.id.quantity_unit_tv);
+        TextView priceUnit = findViewById(R.id.unit_price_tv);
+        TextView totalPriceUnit = findViewById(R.id.unit_total_price_tv);
+
+        priceUnit.setText(currencyUnit);
+        totalPriceUnit.setText(currencyUnit);
+
+        if(fuelUnit.contains(getString(R.string.mpg))){
+            String mil = getString(R.string.mil);
+            tripUnit.setText(mil);
+            totalTripUnit.setText(mil);
+            quantityUnit.setText(getString(R.string.galoon));
+        }else{
+            String km = getString(R.string.km);
+            tripUnit.setText(km);
+            totalTripUnit.setText(km);
+            quantityUnit.setText(getString(R.string.litres));
+        }
+
         dateTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog(v);
-            }
-        });
-        // TODO: 03.08.2018
-        dist.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId== EditorInfo.IME_ACTION_NEXT){
-                    Log.d(TAG, "action: next");
-                }
-                return false;
             }
         });
 
@@ -161,9 +177,6 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
             }
         });
 
-
-
-
     }
 
     @Override
@@ -174,7 +187,7 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
 
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
+        newFragment.show(getSupportFragmentManager(), getString(R.string.date_picker));
     }
 
     void saveToDb(int editInt){
@@ -196,18 +209,22 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
 
         String noteString = note.getText().toString();
 
-        float avg = getAvg(tripDistNum, quantityNum);
+        float avg;
+
+        if(fuelUnit.contains(getString(R.string.mpg))){
+            avg = getAvgImperial(tripDistNum, quantityNum);
+        }else {
+            avg = getAvgMetric(tripDistNum, quantityNum);
+        }
+
         if(Float.isNaN(avg))avg=0;
 
         if(editInt==-1){
             Refueling refueling = new Refueling(carId,currentDate
-                    ,tripDistNum
-                    ,distNum
-                    ,quantityNum
-                    ,priceNum
-                    ,totalPriceNum
-                    ,avg
-                    ,noteString);
+                    ,tripDistNum ,distNum
+                    ,quantityNum,priceNum
+                    ,totalPriceNum,avg
+                    ,noteString,fuelUnit,currencyUnit);
             carsViewModel.insertRefueling(refueling);
         }else {
             tempRefueling.setTripDist(tripDistNum);
@@ -234,14 +251,23 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
 
     private void sendWidgetBroadcast(float avg) {
         Intent intentWidget = new Intent(AvgAppWidget.ACTION_UPDATE);
-        intentWidget.putExtra(AvgAppWidget.EXTRA_DATA, Utils.numberFormat(avg));
+        intentWidget.putExtra(AvgAppWidget.EXTRA_DATA, Utils.numberFormat(avg)
+                +" "+fuelUnit);
         sendBroadcast(intentWidget);
     }
 
-    private float getAvg(int tripDist, float quantity) {
+    private float getAvgMetric(int tripDist, float quantity) {
         float avg = (quantity*100)/tripDist;
-        Toast.makeText(getBaseContext(),"Your AVG is: "
+        Toast.makeText(getBaseContext(),getString(R.string.your_avg)
                 +numberFormat(avg)
+                ,Toast.LENGTH_SHORT).show();
+        return avg;
+    }
+
+    private float getAvgImperial(int tripDist, float quantity){
+        float avg = tripDist/quantity;
+        Toast.makeText(getBaseContext(),getString(R.string.your_avg)
+                        +numberFormat(avg)
                 ,Toast.LENGTH_SHORT).show();
         return avg;
     }
@@ -272,4 +298,16 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
         dateTv.setText(currentDate);
 
     }
+
+    @NonNull
+    private String getUnit(SharedPreferences sharedPreferences) {
+        return sharedPreferences.getString(getString(R.string.key_list_fuel_unit)
+                ,getString(R.string.l_100km));
+    }
+    @NonNull
+    private String getCurrencyUnit(SharedPreferences sharedPreferences) {
+        return sharedPreferences.getString(getString(R.string.key_list_currency)
+                ,getString(R.string.pln));
+    }
+
 }

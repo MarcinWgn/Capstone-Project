@@ -26,9 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="viewStart"
+            android:textColor="@color/indigo_800"
             android:textSize="14sp"
             android:textStyle="italic"
-            android:textColor="@color/colorPrimary"
             tools:text="6.8" />
     </LinearLayout>
 
@@ -36,7 +36,7 @@
         android:id="@+id/widget_image_btn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/ic_directions_car_black_24dp" />
-
+        android:background="@drawable/ic_directions_car_black_24dp"
+        android:contentDescription="@string/car_button" />
 
 </LinearLayout>

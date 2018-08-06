@@ -1,7 +1,6 @@
 package com.wegrzyn.marcin.fuelbills;
 
 import android.content.Context;
-import android.icu.text.DecimalFormat;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -72,6 +71,25 @@ public class RefuelingAdapter extends RecyclerView.Adapter<RefuelingAdapter.Refu
 
             String note = refueling.getNote();
             holder.note.setText(note);
+
+            holder.priceUnit.setText(refuelingList.get(position).getCurrency());
+            holder.totalPriceUnit.setText(refuelingList.get(position).getCurrency());
+
+            if(refuelingList.get(position).getFuelUnit()
+                    .contains(context.getString(R.string.mpg))){
+                String mil = context.getString(R.string.mil);
+                holder.tripDistUnit.setText(mil);
+                holder.distanceUnit.setText(mil);
+                holder.quantityUnit.setText(R.string.galoon);
+                holder.avgUnit.setText(R.string.mpg);
+            }else {
+                String km = context.getString(R.string.km);
+                holder.tripDistUnit.setText(km);
+                holder.distanceUnit.setText(km);
+                holder.quantityUnit.setText(context.getString(R.string.litres));
+                holder.avgUnit.setText(context.getString(R.string.l_100km));
+            }
+
         }
     }
 
@@ -92,6 +110,13 @@ public class RefuelingAdapter extends RecyclerView.Adapter<RefuelingAdapter.Refu
             TextView avg;
             TextView note;
 
+            TextView tripDistUnit;
+            TextView distanceUnit;
+            TextView quantityUnit;
+            TextView avgUnit;
+            TextView priceUnit;
+            TextView totalPriceUnit;
+
             ImageButton deleteRef;
             ImageButton editRef;
 
@@ -108,6 +133,13 @@ public class RefuelingAdapter extends RecyclerView.Adapter<RefuelingAdapter.Refu
             note = itemView.findViewById(R.id.note_et);
             deleteRef = itemView.findViewById(R.id.del_refueling_btn);
             editRef = itemView.findViewById(R.id.edit_refueling_btn);
+
+            tripDistUnit = itemView.findViewById(R.id.trip_unit_tv);
+            distanceUnit =itemView.findViewById(R.id.total_unit_tv);
+            quantityUnit =itemView.findViewById(R.id.quantity_unit_tv);
+            avgUnit = itemView.findViewById(R.id.unit_avg_tv);
+            priceUnit = itemView.findViewById(R.id.unit_price_tv);
+            totalPriceUnit = itemView.findViewById(R.id.unit_total_price_tv);
 
             deleteRef.setOnClickListener(new View.OnClickListener() {
                 @Override
