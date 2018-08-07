@@ -144,7 +144,6 @@
             app:layout_constraintStart_toEndOf="@+id/total_price_et" />
 
         <TextView
-            android:id="@+id/note_label_tv"
             style="@style/CardTextViewStyle"
             android:text="@string/note"
             app:layout_constraintBaseline_toBaselineOf="@+id/note_et"

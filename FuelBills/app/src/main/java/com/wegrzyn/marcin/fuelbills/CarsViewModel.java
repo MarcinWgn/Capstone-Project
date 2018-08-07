@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class CarsViewModel extends AndroidViewModel {
 
-    private static final String TAG =CarsViewModel.class.getSimpleName() ;
     private CarRepository carRepository;
 
     private Car tempCar;
@@ -30,7 +29,8 @@ public class CarsViewModel extends AndroidViewModel {
 
     LiveData<Car> getCar(int id){return carRepository.getCar(id);}
     LiveData<List<Car>> getAllCars(){return allCars;}
-    LiveData<List<Refueling>> getAllRefillings(){return allRefueling;};
+    LiveData<List<Refueling>> getAllRefillings(){return allRefueling;}
+
     LiveData<List<Refueling>> getRefuelingById(int carId){return carRepository.getRefuelingById(carId);}
     LiveData<Refueling> getRefueling(int id){return carRepository.getRefueling(id);}
     LiveData<Refueling> getMaxDist(int id){return carRepository.getMaxDist(id);}

@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,7 +16,6 @@ import android.widget.Spinner;
 
 public class AddCarActivity extends AppCompatActivity  {
 
-    private static final String TAG = AddCarActivity.class.getSimpleName() ;
     private CarsViewModel carsViewModel;
 
     private EditText nameEt;
@@ -39,7 +37,6 @@ public class AddCarActivity extends AppCompatActivity  {
         fuelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG,String.valueOf(position));
                 fuelType = position;
             }
 

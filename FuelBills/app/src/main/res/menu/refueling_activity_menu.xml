@@ -4,6 +4,7 @@
     <item
         android:id="@+id/show_chart_activity_item_menu"
         android:icon="@drawable/ic_show_chart_black_24dp"
+        android:contentDescription="@string/show_chart_button"
         android:orderInCategory="1"
         android:title="@string/show_chart"
         app:showAsAction="always" />

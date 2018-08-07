@@ -31,7 +31,6 @@ import static com.wegrzyn.marcin.fuelbills.Utils.numberFormat;
 
 public class AddRefuelingActivity extends AppCompatActivity implements DatePickerFragment.OnDatePicListener {
 
-    private static final String TAG =AddRefuelingActivity.class.getSimpleName() ;
     public static final String AVG = "avg";
     private CarsViewModel carsViewModel;
     private int editInt;

@@ -22,7 +22,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements ListItemClickListener {
 
-    private static final String TAG = MainActivity.class.getSimpleName() ;
     public static final String EDIT = "edit";
     public static final String CAR_ID = "car_id";
     private CarsViewModel carsViewModel;

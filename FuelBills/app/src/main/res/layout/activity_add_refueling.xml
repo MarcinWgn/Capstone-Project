@@ -26,7 +26,6 @@
         tools:text="12.02.2012" />
 
     <TextView
-        android:id="@+id/date_label_desc_tv"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
         android:text="@string/click_to_edit"
@@ -162,7 +161,6 @@
         app:layout_constraintStart_toEndOf="@+id/total_price_et" />
 
     <TextView
-        android:id="@+id/note_label_tv"
         style="@style/AddTextViewStyle"
         android:text="@string/note"
         app:layout_constraintBaseline_toBaselineOf="@+id/note_et"

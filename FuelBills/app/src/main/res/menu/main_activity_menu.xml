@@ -3,6 +3,7 @@
 
     <item
         android:id="@+id/settings_menu"
+        android:contentDescription="@string/open_settings_button"
         android:title="@string/settings"
         android:orderInCategory="1" />
 

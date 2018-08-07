@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -22,7 +21,6 @@ import java.util.List;
 
 public class ChartActivity extends AppCompatActivity {
 
-    private static final String TAG =ChartActivity.class.getSimpleName() ;
     private int carId;
 
     private LineChart avgLineChart;
@@ -42,8 +40,7 @@ public class ChartActivity extends AppCompatActivity {
 
         if(getIntent().hasExtra(RefuelingActivity.CAR_ID)){
             carId = getIntent().getIntExtra(RefuelingActivity.CAR_ID,-1);
-            Log.d(TAG,String.valueOf(carId));
-        };
+        }
 
         CarsViewModel carsViewModel = ViewModelProviders.of(this).get(CarsViewModel.class);
 

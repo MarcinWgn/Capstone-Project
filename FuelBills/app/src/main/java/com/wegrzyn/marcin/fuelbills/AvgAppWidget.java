@@ -10,8 +10,6 @@ import android.widget.RemoteViews;
 
 public class AvgAppWidget extends AppWidgetProvider {
 
-    public static final String TAG = AvgAppWidget.class.getSimpleName();
-
     public static final String ACTION_UPDATE = "android.appwidget.action.APPWIDGET_UPDATE";
     public static final String EXTRA_DATA ="extra_data";
 
@@ -19,7 +17,7 @@ public class AvgAppWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.avg_app_widget);
-        views.setTextViewText(R.id.avg_widget_tv, "add refueling");
+        views.setTextViewText(R.id.avg_widget_tv, context.getString(R.string.add_refueling));
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
         Intent intent = new Intent(context,MainActivity.class);

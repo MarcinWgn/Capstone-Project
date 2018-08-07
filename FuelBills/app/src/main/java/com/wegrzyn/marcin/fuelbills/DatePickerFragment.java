@@ -16,8 +16,6 @@ import java.util.Calendar;
  */
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
-    private static final String TAG = DatePickerFragment.class.getSimpleName() ;
-
     OnDatePicListener mCallback;
 
     public interface OnDatePicListener {
