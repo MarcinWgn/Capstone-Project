@@ -2,6 +2,7 @@ package com.wegrzyn.marcin.fuelbills;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,15 +14,14 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.wegrzyn.marcin.fuelbills.databinding.ActivityAddCarBinding;
+
 
 public class AddCarActivity extends AppCompatActivity  {
 
     private CarsViewModel carsViewModel;
 
-    private EditText nameEt;
-    private EditText vinEt;
-    private EditText plateEt;
-    private Spinner fuelSpinner;
+    private ActivityAddCarBinding addCarBinding;
 
     private int fuelType;
     private int editInt;
@@ -31,10 +31,10 @@ public class AddCarActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_car);
 
-        setViews();
-        fuelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        addCarBinding = DataBindingUtil.setContentView(this, R.layout.activity_add_car);
+
+        addCarBinding.fuelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 fuelType = position;
@@ -57,10 +57,10 @@ public class AddCarActivity extends AppCompatActivity  {
                 @Override
                 public void onChanged(@Nullable Car car) {
                     tempCar = car;
-                    nameEt.setText(car.getName());
-                    vinEt.setText(car.getVin());
-                    plateEt.setText(car.getPlate());
-                    fuelSpinner.setSelection(car.getFuelType());
+                    addCarBinding.nameEt.setText(car.getName());
+                    addCarBinding.vinEt.setText(car.getVin());
+                    addCarBinding.plateEt.setText(car.getPlate());
+                    addCarBinding.fuelSpinner.setSelection(car.getFuelType());
                 }
             });
 
@@ -77,18 +77,10 @@ public class AddCarActivity extends AppCompatActivity  {
                 getSupportActionBar().setTitle(R.string.edit_car);
         }
     }
-
-    private void setViews() {
-        nameEt = findViewById(R.id.name_et);
-        vinEt = findViewById(R.id.vin_et);
-        plateEt = findViewById(R.id.plate_et);
-        fuelSpinner = findViewById(R.id.fuel_spinner);
-    }
-
     private void saveToDb(int editInt){
-        String name = nameEt.getText().toString();
-        String vin = vinEt.getText().toString();
-        String plate = plateEt.getText().toString();
+        String name = addCarBinding.nameEt.getText().toString();
+        String vin = addCarBinding.vinEt.getText().toString();
+        String plate = addCarBinding.plateEt.getText().toString();
 
         if(editInt==-1){
             carsViewModel.insertCar(new Car(name,vin,fuelType,plate));

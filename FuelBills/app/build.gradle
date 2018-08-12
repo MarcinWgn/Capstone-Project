@@ -9,6 +9,9 @@ android {
             storePassword 'Marcin'
         }
     }
+    dataBinding {
+        enabled = true
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.wegrzyn.marcin.fuelbills"
@@ -28,6 +31,8 @@ android {
             signingConfig signingConfigs.config
         }
     }
+
+
 }
 
 dependencies {

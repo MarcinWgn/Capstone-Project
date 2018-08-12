@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.wegrzyn.marcin.fuelbills.databinding.ActivityAddRefuelingBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,27 +40,18 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
 
     private String currentDate;
 
-    private TextView dateTv;
-    private EditText tripDist;
-    private EditText dist;
-    private EditText quantity;
-    private EditText price;
-    private EditText totalPrice;
-    private EditText note;
+    private ActivityAddRefuelingBinding refuelingBinding;
 
     private Refueling tempRefueling;
     private String fuelUnit;
     private String currencyUnit;
 
-    private FirebaseAnalytics analytics;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_refueling);
 
-        analytics = FirebaseAnalytics.getInstance(this);
+        refuelingBinding = DataBindingUtil.setContentView(this,R.layout.activity_add_refueling);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         fuelUnit = getUnit(sharedPreferences);
@@ -77,7 +70,7 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
         Date dateNow = Calendar.getInstance().getTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         currentDate = dateFormat.format(dateNow);
-        dateTv.setText(currentDate);
+        refuelingBinding.dateRefTv.setText(currentDate);
 
 
         if(editInt >-1){
@@ -85,13 +78,13 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
                 @Override
                 public void onChanged(@Nullable Refueling refueling) {
                     tempRefueling = refueling;
-                    dateTv.setText(refueling.getDate());
-                    tripDist.setText(String.valueOf(refueling.getTripDist()));
-                    dist.setText(String.valueOf(refueling.getDist()));
-                    quantity.setText(String.valueOf(refueling.getQuantity()));
-                    price.setText(String.valueOf(refueling.getPrice()));
-                    totalPrice.setText(String.valueOf(refueling.getTotalPrice()));
-                    note.setText(refueling.getNote());
+                    refuelingBinding.dateRefTv.setText(refueling.getDate());
+                    refuelingBinding.tripRefDistEt.setText(String.valueOf(refueling.getTripDist()));
+                    refuelingBinding.totalDistEt.setText(String.valueOf(refueling.getDist()));
+                    refuelingBinding.quantityEt.setText(String.valueOf(refueling.getQuantity()));
+                    refuelingBinding.priceEt.setText(String.valueOf(refueling.getPrice()));
+                    refuelingBinding.totalPriceEt.setText(String.valueOf(refueling.getTotalPrice()));
+                    refuelingBinding.noteEt.setText(refueling.getNote());
                 }
             });
         }
@@ -105,7 +98,7 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
             @Override
             public void onChanged(@Nullable Refueling refueling) {
                 if(refueling!= null)
-                dist.setText(String.valueOf(refueling.getDist()));
+                    refuelingBinding.totalDistEt.setText(String.valueOf(refueling.getDist()));
             }
         });
     }
@@ -121,56 +114,42 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
     }
 
     private void setView() {
-        dateTv = findViewById(R.id.date_ref_tv);
-        tripDist = findViewById(R.id.trip_ref_dist_et);
-        dist = findViewById(R.id.total_dist_et);
-        quantity = findViewById(R.id.quantity_et);
-        price = findViewById(R.id.price_et);
-        totalPrice = findViewById(R.id.total_price_et);
-        note = findViewById(R.id.note_et);
-
-        TextView tripUnit = findViewById(R.id.trip_unit_tv);
-        TextView totalTripUnit = findViewById(R.id.total_unit_tv);
-        TextView quantityUnit = findViewById(R.id.quantity_unit_tv);
-        TextView priceUnit = findViewById(R.id.unit_price_tv);
-        TextView totalPriceUnit = findViewById(R.id.unit_total_price_tv);
-
-        priceUnit.setText(currencyUnit);
-        totalPriceUnit.setText(currencyUnit);
+        refuelingBinding.unitPriceTv.setText(currencyUnit);
+        refuelingBinding.unitTotalPriceTv.setText(currencyUnit);
 
         if(fuelUnit.contains(getString(R.string.mpg))){
             String mil = getString(R.string.mil);
-            tripUnit.setText(mil);
-            totalTripUnit.setText(mil);
-            quantityUnit.setText(getString(R.string.galoon));
+            refuelingBinding.tripUnitTv.setText(mil);
+            refuelingBinding.totalUnitTv.setText(mil);
+            refuelingBinding.quantityUnitTv.setText(getString(R.string.galoon));
         }else{
             String km = getString(R.string.km);
-            tripUnit.setText(km);
-            totalTripUnit.setText(km);
-            quantityUnit.setText(getString(R.string.litres));
+            refuelingBinding.tripUnitTv.setText(km);
+            refuelingBinding.totalUnitTv.setText(km);
+            refuelingBinding.quantityUnitTv.setText(getString(R.string.litres));
         }
 
-        dateTv.setOnClickListener(new View.OnClickListener() {
+        refuelingBinding.dateRefTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog(v);
             }
         });
 
-        price.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        refuelingBinding.priceEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(actionId== EditorInfo.IME_ACTION_NEXT){
 
-                    String quantityString = quantity.getText().toString();
+                    String quantityString = refuelingBinding.quantityEt.getText().toString();
                     final float quantityNum = Float.parseFloat(checkNum(quantityString));
 
-                    String priceString = price.getText().toString();
+                    String priceString = refuelingBinding.priceEt.getText().toString();
                     final double priceNum = Double.parseDouble(checkNum(priceString));
 
                     String calculatePrice = Utils.numberFormat((float)(priceNum*quantityNum));
 
-                    totalPrice.setText(calculatePrice);
+                    refuelingBinding.totalPriceEt.setText(calculatePrice);
                 }
                 return false;
             }
@@ -191,22 +170,22 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
 
     void saveToDb(int editInt){
 
-        String tripDistString = tripDist.getText().toString();
+        String tripDistString = refuelingBinding.tripRefDistEt.getText().toString();
         int tripDistNum = Integer.parseInt(checkNum(tripDistString));
 
-        String distString = dist.getText().toString();
+        String distString = refuelingBinding.totalDistEt.getText().toString();
         int distNum = Integer.parseInt(checkNum(distString));
 
-        String quantityString = quantity.getText().toString();
+        String quantityString = refuelingBinding.quantityEt.getText().toString();
         final float quantityNum = Float.parseFloat(checkNum(quantityString));
 
-        String priceString = price.getText().toString();
+        String priceString = refuelingBinding.quantityEt.getText().toString();
         final double priceNum = Double.parseDouble(checkNum(priceString));
 
-        String totalPriceString = totalPrice.getText().toString();
+        String totalPriceString = refuelingBinding.quantityEt.getText().toString();
         double totalPriceNum = Double.parseDouble(checkNum(totalPriceString));
 
-        String noteString = note.getText().toString();
+        String noteString = refuelingBinding.noteEt.getText().toString();
 
         float avg;
 
@@ -238,14 +217,6 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
             carsViewModel.updateRefueling(tempRefueling);
         }
         sendWidgetBroadcast(avg);
-        logAnalytics(avg);
-    }
-
-    public void logAnalytics(float avg){
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, AVG);
-        bundle.putString(FirebaseAnalytics.Param.VALUE,Utils.numberFormat(avg));
-        analytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM,bundle);
     }
 
     private void sendWidgetBroadcast(float avg) {
@@ -294,8 +265,7 @@ public class AddRefuelingActivity extends AppCompatActivity implements DatePicke
     @Override
     public void onDatePick(String date) {
         currentDate = date;
-        dateTv.setText(currentDate);
-
+        refuelingBinding.dateRefTv.setText(currentDate);
     }
 
     @NonNull
