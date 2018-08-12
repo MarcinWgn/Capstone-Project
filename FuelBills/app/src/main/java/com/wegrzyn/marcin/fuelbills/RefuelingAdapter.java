@@ -1,6 +1,7 @@
 package com.wegrzyn.marcin.fuelbills;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.wegrzyn.marcin.fuelbills.databinding.RefuelingCardItemViewBinding;
 
 import java.util.List;
 import java.util.Locale;
@@ -38,7 +41,8 @@ public class RefuelingAdapter extends RecyclerView.Adapter<RefuelingAdapter.Refu
     @Override
     public RefuelingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.refueling_card_item_view,parent,false);
-        return new RefuelingViewHolder(view);
+        RefuelingCardItemViewBinding binding = DataBindingUtil.bind(view);
+        return new RefuelingViewHolder(binding);
     }
 
     @Override
@@ -48,46 +52,46 @@ public class RefuelingAdapter extends RecyclerView.Adapter<RefuelingAdapter.Refu
             Refueling refueling = refuelingList.get(position);
 
             String date = String.valueOf(refueling.getDate());
-            holder.date.setText(date);
+            holder.binding.dateTv.setText(date);
 
             int tripDist = refueling.getTripDist();
-            holder.tripDistance.setText(String.valueOf(tripDist));
+            holder.binding.tripDistTv.setText(String.valueOf(tripDist));
 
             int dist = refueling.getDist();
-            holder.distance.setText(String.valueOf(dist));
+            holder.binding.totalDistEt.setText(String.valueOf(dist));
 
             float quantity = refueling.getQuantity();
-            holder.quantity.setText(String.valueOf(quantity));
+            holder.binding.quantityEt.setText(String.valueOf(quantity));
 
             double price = refueling.getPrice();
-            holder.price.setText(String.valueOf(price));
+            holder.binding.priceEt.setText(String.valueOf(price));
 
             double totalPrice = refueling.getTotalPrice();
-            holder.totalPrice.setText(String.valueOf(totalPrice));
+            holder.binding.totalPriceEt.setText(String.valueOf(totalPrice));
 
             float avg = refueling.getAvg();
 
-            holder.avg.setText( String.format(Locale.getDefault(),"%.2f",avg));
+            holder.binding.avgTv.setText( String.format(Locale.getDefault(),"%.2f",avg));
 
             String note = refueling.getNote();
-            holder.note.setText(note);
+            holder.binding.noteEt.setText(note);
 
-            holder.priceUnit.setText(refuelingList.get(position).getCurrency());
-            holder.totalPriceUnit.setText(refuelingList.get(position).getCurrency());
+            holder.binding.unitPriceTv.setText(refuelingList.get(position).getCurrency());
+            holder.binding.unitTotalPriceTv.setText(refuelingList.get(position).getCurrency());
 
             if(refuelingList.get(position).getFuelUnit()
                     .contains(context.getString(R.string.mpg))){
                 String mil = context.getString(R.string.mil);
-                holder.tripDistUnit.setText(mil);
-                holder.distanceUnit.setText(mil);
-                holder.quantityUnit.setText(R.string.galoon);
-                holder.avgUnit.setText(R.string.mpg);
+                holder.binding.tripUnitTv.setText(mil);
+                holder.binding.totalUnitTv.setText(mil);
+                holder.binding.quantityUnitTv.setText(R.string.galoon);
+                holder.binding.unitAvgTv.setText(R.string.mpg);
             }else {
                 String km = context.getString(R.string.km);
-                holder.tripDistUnit.setText(km);
-                holder.distanceUnit.setText(km);
-                holder.quantityUnit.setText(context.getString(R.string.litres));
-                holder.avgUnit.setText(context.getString(R.string.l_100km));
+                holder.binding.tripUnitTv.setText(km);
+                holder.binding.totalUnitTv.setText(km);
+                holder.binding.quantityUnitTv.setText(context.getString(R.string.litres));
+                holder.binding.unitAvgTv.setText(context.getString(R.string.l_100km));
             }
 
         }
@@ -101,59 +105,26 @@ public class RefuelingAdapter extends RecyclerView.Adapter<RefuelingAdapter.Refu
 
     class RefuelingViewHolder extends RecyclerView.ViewHolder {
 
-            TextView date;
-            TextView tripDistance;
-            TextView distance;
-            TextView quantity;
-            TextView price;
-            TextView totalPrice;
-            TextView avg;
-            TextView note;
+        RefuelingCardItemViewBinding binding;
 
-            TextView tripDistUnit;
-            TextView distanceUnit;
-            TextView quantityUnit;
-            TextView avgUnit;
-            TextView priceUnit;
-            TextView totalPriceUnit;
+        RefuelingViewHolder(RefuelingCardItemViewBinding viewBinding) {
+            super(viewBinding.getRoot());
 
-            ImageButton deleteRef;
-            ImageButton editRef;
+            binding = viewBinding;
 
-        RefuelingViewHolder(View itemView) {
-            super(itemView);
-
-            date = itemView.findViewById(R.id.date_tv);
-            tripDistance = itemView.findViewById(R.id.trip_dist_tv);
-            distance = itemView.findViewById(R.id.total_dist_et);
-            quantity = itemView.findViewById(R.id.quantity_et);
-            price = itemView.findViewById(R.id.price_et);
-            totalPrice = itemView.findViewById(R.id.total_price_et);
-            avg = itemView.findViewById(R.id.avg_tv);
-            note = itemView.findViewById(R.id.note_et);
-            deleteRef = itemView.findViewById(R.id.del_refueling_btn);
-            editRef = itemView.findViewById(R.id.edit_refueling_btn);
-
-            tripDistUnit = itemView.findViewById(R.id.trip_unit_tv);
-            distanceUnit =itemView.findViewById(R.id.total_unit_tv);
-            quantityUnit =itemView.findViewById(R.id.quantity_unit_tv);
-            avgUnit = itemView.findViewById(R.id.unit_avg_tv);
-            priceUnit = itemView.findViewById(R.id.unit_price_tv);
-            totalPriceUnit = itemView.findViewById(R.id.unit_total_price_tv);
-
-            deleteRef.setOnClickListener(new View.OnClickListener() {
+            binding.delRefuelingBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     itemClickListener.onItemDelete(getAdapterPosition());
                 }
             });
-            editRef.setOnClickListener(new View.OnClickListener() {
+            binding.editRefuelingBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     itemClickListener.editItemData(refuelingList.get(getAdapterPosition()).getRefuelingId());
                 }
             });
-            itemView.setOnClickListener(new View.OnClickListener() {
+            viewBinding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     itemClickListener.onItemClick(getAdapterPosition());
