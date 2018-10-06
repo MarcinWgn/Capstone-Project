@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListPreference
-        android:key="@string/key_list_fuel_unit"
-        android:title="@string/fuel_efficiency"
-        android:entries="@array/fuel_efficiency"
-        android:entryValues="@array/fuel_efficiency"
-        android:dialogTitle="@string/fuel_efficiency"/>
-    <ListPreference
-        android:key="@string/key_list_currency"
-        android:title="@string/currency"
-        android:entries="@array/currency"
-        android:entryValues="@array/currency"
-        android:dialogTitle="@string/currency"/>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <ListPreference
+            android:dialogTitle="@string/fuel_efficiency"
+            android:entries="@array/fuel_efficiency"
+            android:entryValues="@array/fuel_efficiency"
+            android:key="@string/key_list_fuel_unit"
+            android:title="@string/fuel_efficiency" />
+
+        <ListPreference
+            android:dialogTitle="@string/currency"
+            android:entries="@array/currency"
+            android:entryValues="@array/currency"
+            android:key="@string/key_list_currency"
+            android:title="@string/currency" />
 
 </PreferenceScreen>

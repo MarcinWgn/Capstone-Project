@@ -25,7 +25,8 @@
         android:minWidth="200dp"
         app:layout_constraintStart_toEndOf="@+id/name_label_tv"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Ford Focus RS" />
+        tools:text="Ford Focus RS"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/vin_label_tv"
